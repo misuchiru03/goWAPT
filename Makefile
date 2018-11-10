@@ -3,7 +3,7 @@
 GO=$(shell which go)
 OUTFILE=gowapt
 SOURCEDIR=src
-INSTALLDIR=/usr/local/bin/
+PREFIX=/usr/local
 
 
 # Do not touch these!
@@ -17,8 +17,11 @@ gowpt:
 	$(GO) build -ldflags="-s -w" -o $(OUTFILE) $(SOURCES)
 
 install:
-	install -m 755 $(OUTFILE) $(INSTALLDIR)
+	install -m 755 $(OUTFILE) $(DESTDIR)$(PREFIX)/bin/
 	rm -f $(OUTFILE)
+
+uninstall:
+	rm -f $(DESTDIR)$(PREFIX)/bin/$(OUTFILE)
 
 .PHONY: clean
 

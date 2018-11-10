@@ -4,6 +4,7 @@ GO=$(shell which go)
 OUTFILE=gowapt
 SOURCEDIR=src
 PREFIX=/usr/local
+go_ldflags+=" -s -w"
 
 
 # Do not touch these!
@@ -14,7 +15,7 @@ gowpt:
 	$(info Remember to set GOPATH!)
 	$(info Downloading dependencies $(DEPS))
 	$(foreach var,$(DEPS),$(GO) get $(var);)
-	$(GO) build -ldflags="-s -w" -o $(OUTFILE) $(SOURCES)
+	$(GO) build -ldflags=$(go_ldflags) -o $(OUTFILE) $(SOURCES)
 
 install:
 	install -m 755 $(OUTFILE) $(DESTDIR)$(PREFIX)/bin/

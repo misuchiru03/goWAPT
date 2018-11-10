@@ -4,7 +4,7 @@ GO=$(shell which go)
 OUTFILE=gowapt
 SOURCEDIR=src
 PREFIX=/usr/local
-go_ldflags+=" -s -w"
+go_ldflags+="-s -w"
 
 
 # Do not touch these!
